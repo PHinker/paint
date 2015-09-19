@@ -1,6 +1,6 @@
 
 SOURCE = callbacks.cpp main.cpp graphics.cpp util.cpp shape.cpp rectangle.cpp \
-         screen.cpp globals.cpp
+         screen.cpp globals.cpp line.cpp
 
 OBJS = $(SOURCE:%.cpp=%.o)
 

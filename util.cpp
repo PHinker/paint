@@ -2,26 +2,31 @@
 #include "util.h"
 #include "graphics.h"
 #include "globals.h"
+#include "rectangle.h"
 #include "screen.h"
 
 using namespace std;
 
-void utilityCentral(EventType event, unsigned char key, int button, int state, int x, int y)
+void utilityCentral(Event event)
 {
    static Screen screen;
 
-   switch (event)
+   switch (event.event)
    {
       case DISPLAY:
          cout << "Displayed utility central\n";
          screen.initPalette();
          break;
       case KEYBOARD:
-         cout << "Keyboard utility central (" << key << ", " << x << ", " << y << ")\n";
+         cout << "Keyboard utility central (" << event.key << ", " << event.x << ", " << event.y << ")\n";
          break;
-      case MOUSE:
-         cout << "Mouse utility central (" << key << ", " << button << ", " << state << ", " << x << ", " << y << ")\n";
-         screen.click(x, y);
+      case MOUSECLICK:
+         cout << "Mouse utility central (" << event.key << ", " << event.button << ", " << event.state << ", " << event.x << ", " << event.y << ")\n";
+         screen.click(event.x, event.y);
+         break;
+      case MOUSEDRAG:
+         cout << "Mouse utility central (" << event.key << ", " << event.button << ", " << event.state << ", " << event.x << ", " << event.y << ")\n";
+         screen.clickAndDrag(event.x, event.y, event.lastX, event.lastY);
          break;
       default:
          cout << "Why am I here?\n";

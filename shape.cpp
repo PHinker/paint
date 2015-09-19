@@ -24,15 +24,16 @@ using namespace std;
 // Note that this is an abstract class since it contains pure virtual functions.
 
 // constructor
-Shape::Shape( float x, float y, SelectedColor c ) : locX( x ), locY( y ), color( c )
+Shape::Shape( float x, float y, SelectedColor bc, SelectedColor fc, bool f ) :
+   locX( x ), locY( y ), borderColor( bc ), fillColor (fc), filled(f)
 {
-    cout << "Shape constructor: (" << locX << "," << locY << ") = " << color << endl;
+    cout << "Shape constructor: (" << locX << "," << locY << ") = " << borderColor << endl;
 }
 
 // destructor
 Shape::~Shape( )
 {
-    cout << "Shape destructor: (" << locX << "," << locY << ") = " << color << endl;
+    cout << "Shape destructor: (" << locX << "," << locY << ") = " << borderColor << endl;
 }
 
 // move object
@@ -46,7 +47,7 @@ void Shape::moveTo( float x, float y )
 // change color of object
 void Shape::changeColor( SelectedColor c )
 {
-    cout << "Change Shape color from " << color << " to " << c << endl;
-    color = c;
+    cout << "Change Shape color from " << borderColor << " to " << c << endl;
+    borderColor = c;
 }
 

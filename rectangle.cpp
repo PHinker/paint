@@ -23,18 +23,18 @@ using namespace std;
 // Rectangle class implementation
 
 // constructor
-Rectangle::Rectangle( float x, float y, SelectedColor c, float w, float h ) :
-    Shape( x, y, c ), width( w ), height( h )
+Rectangle::Rectangle( float x, float y, SelectedColor bc, SelectedColor fc, float w, float h ) :
+    Shape( x, y, bc, fc ), width( w ), height( h )
 {
     cout << "Rectangle constructor: (" <<
-         x << "," << y << ") = " << c << ", width " << w << " x height " << h << endl;
+         x << "," << y << ") = " << bc << ", width " << w << " x height " << h << endl;
 }
 
 // destructor
 Rectangle::~Rectangle( )
 {
     cout << "Rectangle destructor: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // mutator method for Rectangle class
@@ -48,15 +48,16 @@ void Rectangle::changeDimensions( float w, float h )
 // must override pure virtual Shape::draw() method to instantiate class
 void Rectangle::draw( ) const
 {
-    cout << "Draw  Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+cout << "Draw Rectangle: (" <<
+         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
+     DrawRectangle(locX, locY, locX+width, locY+height, ColorMap[borderColor]);
 }
 
 // must override pure virtual Shape::erase() method to instantiate class
 void Rectangle::erase( ) const
 {
     cout << "Erase Rectangle: (" <<
-         locX << "," << locY << ") = " << color << ", width " << width << " x height " << height << endl;
+         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // must override pure virtual Shape::print() method to instantiate class

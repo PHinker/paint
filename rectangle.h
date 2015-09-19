@@ -27,7 +27,7 @@ class Rectangle : public Shape
         float width, height;
 
     public:
-        Rectangle( float x = 0.0, float y = 0.0, SelectedColor c = WHITE, float w = 1.0, float h = 1.0 );
+        Rectangle( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, float w = 1.0, float h = 1.0 );
         ~Rectangle( );
         void changeDimensions( float w, float h );
         void draw( ) const;

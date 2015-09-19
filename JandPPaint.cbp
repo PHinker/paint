@@ -38,10 +38,14 @@
 		<Unit filename="globals.h" />
 		<Unit filename="graphics.cpp" />
 		<Unit filename="graphics.h" />
+		<Unit filename="line.cpp" />
+		<Unit filename="line.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="rectangle.cpp" />
 		<Unit filename="rectangle.h" />
 		<Unit filename="screen.cpp" />
 		<Unit filename="screen.h" />
+		<Unit filename="shape.cpp" />
 		<Unit filename="shape.h" />
 		<Unit filename="util.cpp" />
 		<Unit filename="util.h" />

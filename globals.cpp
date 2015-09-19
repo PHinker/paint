@@ -13,11 +13,13 @@ Modifications:
 // guard against multiple inclusions
 #ifndef _Globals_H_
 #define _Globals_H_
+#include "globals.h"
 
 // symbolic constants
 
 // global vars
 int ScreenWidth  = 900;
 int ScreenHeight = 600;
+map<SelectedColor, array<float, 3>> ColorMap;
 
 #endif

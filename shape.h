@@ -23,6 +23,7 @@ Modifications:
 // include files
 #include <iostream>
 #include "globals.h"
+#include "graphics.h"
 
 using namespace std;
 
@@ -34,11 +35,12 @@ class Shape
 {
     protected:                    // note use of protected instead of private
         float locX, locY;
-        SelectedColor color;
+        SelectedColor borderColor, fillColor;
+        bool filled;
 
     public:                       // public methods
         // constructor
-        Shape( float x = 0.0, float y = 0.0, SelectedColor c = WHITE );
+        Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, bool f = false);
 
         // destructor
         virtual ~Shape( );

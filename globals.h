@@ -13,6 +13,8 @@ Date:   Fall 2015
 
 Modifications:
 */
+#include <map>
+using namespace std;
 
 // keypresses
 const int EscapeKey = 27;
@@ -33,6 +35,7 @@ enum SelectedShape
 // global vars
 extern int ScreenWidth;
 extern int ScreenHeight;
+extern map<SelectedColor, array<float, 3>> ColorMap;
 
 #define SCREEN_WIDTH_MIN 300
 #define SCREEN_HEIGHT_MIN 300

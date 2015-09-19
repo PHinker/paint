@@ -12,16 +12,16 @@ map<int, SelectedColor> colorIndexMap =
 {
    {0, PURPLE}, {1,DKPURPLE}, {2, ORANGE}, {3, DKORANGE}, {4, YELLOW}, {5, DKYELLOW},
    {6, CYAN}, {7, DKCYAN}, {8, MAGENTA}, {9, DKMAGENTA}, {10, BLUE}, {11, DKBLUE},
-   {12, GREEN}, {13, DKGREEN}, {14, RED}, {15, DKRED}
+   {12, GREEN}, {13, DKGREEN}, {14, RED}, {15, DKRED}, {16, BLACK}
 };
 
 map<int, SelectedShape> shapeMap =
 {
-   {16, LINE}, {17, TEXT}, {18, RECTANGLE}, {19, FLDRECTANGLE},
-   {20, ELLIPSE}, {21, FLDELLIPSE}
+   {16, RECTANGLE}, {17, FLDRECTANGLE}, {18, ELLIPSE}, {19, FLDELLIPSE},
+   {20, LINE}, {21, TEXT}
 };
 
-map<SelectedColor, array<float, 3>> ColorMap;
+extern map<SelectedColor, array<float, 3>> ColorMap;
 
 Screen::Screen()
 {
@@ -45,11 +45,15 @@ Screen::Screen()
    ColorMap[WHITE] = array<float, 3> { 1.0, 1.0, 1.0};
 }
 
+#define ScrToPos(x,y) ((x < 101) ? y/50 * 2 + (x/50) : 23)
+#define PosXToScr(x) (x % 2) * 50
+#define PosYToScr(y) (y / 2) * 50
+
 //gets called when user clicks in one spot on screen
 void Screen::click(int x, int y ) {
 
     //if the click was within the palette
-        int locationIndex = (y/50) * 2 + (x/50);
+        int locationIndex = ScrToPos(x, y);
         if (locationIndex > 0 && locationIndex < 16)
            selectedColor = colorIndexMap[locationIndex];
 
@@ -57,8 +61,13 @@ void Screen::click(int x, int y ) {
         else if(locationIndex > 15 && locationIndex < 22)
            selectedShape = shapeMap[locationIndex];
 
+        else
+        {
+
+        }
         //use switch to assign colors
         cerr << "x: " << x << "  y: " << y << " locationIndex: " << locationIndex << endl;
+        cerr << "selected color = " << selectedColor << " selected shape = " << selectedShape << endl;
 }
 
 void Screen::clickAndDrag(int x, int y, int lastX, int lastY){
@@ -67,7 +76,20 @@ void Screen::clickAndDrag(int x, int y, int lastX, int lastY){
     //add shapes to vector here
 
     //not in palette
-    if(x > 100 && selectedShape != NONE && lastX > 100) {
+    int startX = min(x, lastX), startY = min(y, lastY);
+
+    if(ScrToPos(x, y) > 22 && selectedShape != NONE) {
+       switch (selectedShape) {
+          case LINE:
+          case RECTANGLE:
+          case ELLIPSE:
+          {
+    // ToDo : add the selected shape to the shape vector
+           Rectangle *rect = new Rectangle(startX, startY, WHITE, BLACK, abs(x-lastX), abs(y-lastY));
+           rect->draw();
+          }
+       }
+    }/*
         if(selectedShape == LINE)
             DrawLine(x, y, lastX, lastY, ColorMap[selectedColor]);
         if(selectedShape == RECTANGLE)
@@ -78,7 +100,7 @@ void Screen::clickAndDrag(int x, int y, int lastX, int lastY){
             DrawEllipse(abs(lastX - x)/2, abs(lastY - y)/2, lastX, lastY, ColorMap[selectedColor]);
         if(selectedShape == FLDELLIPSE)
             DrawFilledEllipse(abs(lastX - x), abs(lastY - y), lastX, lastY, ColorMap[selectedColor]);
-    }
+*/
 
 }
 
@@ -86,22 +108,8 @@ void Screen::initPalette()
 {
     // Statically draw the palette on the left
 
-    DrawFilledRectangle(0, 0, 50, 50, ColorMap[RED]);
-    DrawFilledRectangle(50, 0, 100, 50, ColorMap[DKRED]);
-    DrawFilledRectangle(0, 50, 50, 100, ColorMap[GREEN]);
-    DrawFilledRectangle(50, 50, 100, 100, ColorMap[DKGREEN]);
-    DrawFilledRectangle(0, 100, 50, 150, ColorMap[BLUE]);
-    DrawFilledRectangle(50, 100, 100, 150, ColorMap[DKBLUE]);
-    DrawFilledRectangle(0, 150, 50, 200, ColorMap[MAGENTA]);
-    DrawFilledRectangle(50, 150, 100, 200, ColorMap[DKMAGENTA]);
-    DrawFilledRectangle(0, 200, 50, 250, ColorMap[CYAN]);
-    DrawFilledRectangle(50, 200, 100, 250, ColorMap[DKCYAN]);
-    DrawFilledRectangle(0, 250, 50, 300, ColorMap[YELLOW]);
-    DrawFilledRectangle(50, 250, 100, 300, ColorMap[DKYELLOW]);
-    DrawFilledRectangle(0, 300, 50, 350, ColorMap[ORANGE]);
-    DrawFilledRectangle(50, 300, 100, 350, ColorMap[DKORANGE]);
-    DrawFilledRectangle(0, 350, 50, 400, ColorMap[PURPLE]);
-    DrawFilledRectangle(50, 350, 100, 400, ColorMap[DKPURPLE]);
+    for(int i = 0 ; i < 16 ; i++)
+        DrawFilledRectangle(PosXToScr(i), PosYToScr(i), PosXToScr(i) + 50, PosYToScr(i) + 50, ColorMap[colorIndexMap[i]]);
 }
 
 void Screen::keyboardAction(unsigned char key, int x, int y) {

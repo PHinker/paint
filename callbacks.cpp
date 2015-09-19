@@ -34,7 +34,7 @@ void display( void )
     // clear the display
     glClear( GL_COLOR_BUFFER_BIT );
 
-    utilityCentral(DISPLAY, '.', 0, 0, 0, 0);
+    utilityCentral(Event());
 
     // flush graphical output
     glFlush();
@@ -70,7 +70,7 @@ void keyboard( unsigned char key, int x, int y )
     y = ScreenHeight - y;
     cerr << "keypress: " << key << " (" << int( key ) << ") at (" << x << "," << y << ")\n";
 
-    utilityCentral(KEYBOARD, key, 0, 0, x, y);
+    utilityCentral(Event(key, x, y));
     switch ( key )
     {
         // Escape quits program
@@ -95,7 +95,6 @@ void mouseclick( int button, int state, int x, int y )
 
     y = ScreenHeight - y;
 
-    utilityCentral(MOUSE, '.', button, state, x, y);
     switch ( button )
     {
     case GLUT_LEFT_BUTTON:
@@ -105,8 +104,10 @@ void mouseclick( int button, int state, int x, int y )
 
         } else if(state == GLUT_UP){
             if(abs(lastX - x) > 25 || abs(LastY - y) > 25){
+                utilityCentral(Event(button, x, y, lastX, LastY));
                 cerr << "Left click and drag" << endl;
             } else {
+                utilityCentral(Event(button, state, x, y));
                 cerr << "Left click in place" << endl;
             }
         }

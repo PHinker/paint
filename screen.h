@@ -7,7 +7,7 @@
 #include "graphics.h"
 #include "util.h"
 #include "globals.h"
-#include "shape.h"
+#include "rectangle.h"
 
 class Screen
 {
