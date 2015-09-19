@@ -32,15 +32,19 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="./callbacks.cpp" />
-		<Unit filename="./callbacks.h" />
-		<Unit filename="./globals.cpp" />
-		<Unit filename="./globals.h" />
-		<Unit filename="./graphics.cpp" />
-		<Unit filename="./graphics.h" />
-		<Unit filename="./util.cpp" />
-		<Unit filename="./util.h" />
+		<Unit filename="callbacks.cpp" />
+		<Unit filename="callbacks.h" />
+		<Unit filename="globals.cpp" />
+		<Unit filename="globals.h" />
+		<Unit filename="graphics.cpp" />
+		<Unit filename="graphics.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="rectangle.h" />
+		<Unit filename="screen.cpp" />
+		<Unit filename="screen.h" />
+		<Unit filename="shape.h" />
+		<Unit filename="util.cpp" />
+		<Unit filename="util.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
