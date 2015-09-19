@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1442670270 source:/home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/callbacks.cpp
+	<cstdlib>
+	<iostream>
+	<GL/freeglut.h>
+	"globals.h"
+	"callbacks.h"
+	"graphics.h"
+	"util.h"
+	"screen.h"
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/globals.h
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/callbacks.h
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/graphics.h
+	<array>
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/util.h
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/screen.h
+	<iostream>
+	<vector>
+	<GL/freeglut.h>
+	"graphics.h"
+	"util.h"
+	"globals.h"
+	"shape.h"
+
+1442670270 /home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/shape.h
+	<iostream>
+	"globals.h"
+
+1442670270 source:/home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/globals.cpp
+
+1442671121 source:/home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/graphics.cpp
+	<cstdlib>
+	<iostream>
+	<GL/freeglut.h>
+	"graphics.h"
+
+1442670270 source:/home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/main.cpp
+	<cstdlib>
+	<iostream>
+	<GL/freeglut.h>
+	"screen.h"
+	"callbacks.h"
+	"globals.h"
+
+1442670270 source:/home/phinker/CSC300/Fall2015/Programs/PA1/PaintPro/util.cpp
+	<iostream>
+	"util.h"
+	"graphics.h"
+	"globals.h"
+	"screen.h"
+
