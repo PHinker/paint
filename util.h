@@ -12,9 +12,9 @@ enum EventType
 struct Event
 {
    EventType event;
-   int x, y, lastX, lastY;
    unsigned char key;
    int button, state;
+   int x, y, lastX, lastY;
    Event() :
       event(DISPLAY){}
    Event(unsigned char k, int xPos, int yPos) :
