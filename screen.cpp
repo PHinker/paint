@@ -54,7 +54,7 @@ void Screen::click(int x, int y ) {
 
     //if the click was within the palette
         int locationIndex = ScrToPos(x, y);
-        if (locationIndex > 0 && locationIndex < 16)
+        if (locationIndex >= 0 && locationIndex < 16)
            selectedColor = colorIndexMap[locationIndex];
 
         //If click is a shape
