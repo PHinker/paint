@@ -25,21 +25,24 @@ using namespace std;
 
 // constructor
 Shape::Shape( float x, float y, SelectedColor bc, SelectedColor fc) :
-   locX( x ), locY( y ), borderColor( bc ), fillColor (fc)
+    locX( x ), locY( y ), borderColor( bc ), fillColor (fc)
 {
-    cout << "Shape constructor: (" << locX << "," << locY << ") = " << borderColor << endl;
+    cout << "Shape constructor: (" << locX << "," << locY << ") = " << borderColor
+         << endl;
 }
 
 // destructor
 Shape::~Shape( )
 {
-    cout << "Shape destructor: (" << locX << "," << locY << ") = " << borderColor << endl;
+    cout << "Shape destructor: (" << locX << "," << locY << ") = " << borderColor <<
+         endl;
 }
 
 // move object
 void Shape::moveTo( float x, float y )
 {
-    cout << "Move Shape from (" << locX << "," << locY << ") to (" << x << "," << y << ")" << endl;
+    cout << "Move Shape from (" << locX << "," << locY << ") to (" << x << "," << y
+         << ")" << endl;
     locX = x;
     locY = y;
 }

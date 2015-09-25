@@ -23,16 +23,19 @@ Modifications:
 // Rectangle class interface
 class Rectangle : public Shape
 {
-    private:
-        float width, height;
+private:
+    float x2, y2;
 
-    public:
-        Rectangle( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, float w = 1.0, float h = 1.0 );
-        ~Rectangle( );
-        void changeDimensions( float w, float h );
-        void draw( ) const;
-        void erase( ) const;
-        void print( ostream& out ) const;
+public:
+    Rectangle( float x1 = 0.0, float y1 = 0.0, SelectedColor bc = WHITE,
+               SelectedColor fc = BLACK, float x2 = 1.0, float y2 = 1.0 );
+    ~Rectangle( );
+    //void changeDimensions( float w, float h );
+    void draw( ) const;
+    void move(int centerX, int centerY);
+    int getDistanceFromCenter(int clickX, int clickY);
+    void erase( ) const;
+    void print( ostream& out ) const;
 };
 
 #endif

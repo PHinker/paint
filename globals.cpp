@@ -19,7 +19,7 @@ Modifications:
 
 // global vars
 int ScreenWidth  = 900;
-int ScreenHeight = 600;
+int ScreenHeight = 900;
 map<SelectedColor, array<float, 3>> ColorMap;
 
 #endif

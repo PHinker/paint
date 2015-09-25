@@ -33,9 +33,7 @@ void display( void )
 {
     // clear the display
     glClear( GL_COLOR_BUFFER_BIT );
-
     utilityCentral(Event());
-
     // flush graphical output
     glFlush();
 }
@@ -53,7 +51,6 @@ void reshape( int w, int h )
     // store new window dimensions globally
     ScreenWidth = w;
     ScreenHeight = h;
-
     // how to project 3-D scene onto 2-D
     glMatrixMode( GL_PROJECTION );		// use an orthographic projection
     glLoadIdentity();				// initialize transformation matrix
@@ -68,21 +65,20 @@ void keyboard( unsigned char key, int x, int y )
 {
     // correct for upside-down screen coordinates
     y = ScreenHeight - y;
-    cerr << "keypress: " << key << " (" << int( key ) << ") at (" << x << "," << y << ")\n";
-
+    cerr << "keypress: " << key << " (" << int( key ) << ") at (" << x << "," << y
+         << ")\n";
     utilityCentral(Event(key, x, y));
     switch ( key )
     {
-        // Escape quits program
-	case 'q':
-	case EscapeKey:
-	    exit( 0 );
-	    break;
-
-        // anything else redraws window
-	default:
-	    glutPostRedisplay();
-	    break;
+    // Escape quits program
+    case 'q':
+    case EscapeKey:
+        exit( 0 );
+        break;
+    // anything else redraws window
+    default:
+        glutPostRedisplay();
+        break;
     }
 }
 
@@ -92,19 +88,21 @@ void keyboard( unsigned char key, int x, int y )
 void mouseclick( int button, int state, int x, int y )
 {
     static int lastX, LastY;
-
     y = ScreenHeight - y;
-
-
-        if(state == GLUT_DOWN){
-            lastX = x;
-            LastY = y;
-
-        } else if(state == GLUT_UP){
-            if(abs(lastX - x) > 25 || abs(LastY - y) > 25){
-                utilityCentral(Event(button, x, y, lastX, LastY));
-            } else {
-                utilityCentral(Event(button, state, x, y));
-            }
+    if(state == GLUT_DOWN)
+    {
+        lastX = x;
+        LastY = y;
+    }
+    else if(state == GLUT_UP)
+    {
+        if(abs(lastX - x) > 25 || abs(LastY - y) > 25)
+        {
+            utilityCentral(Event(button, x, y, lastX, LastY));
+        }
+        else
+        {
+            utilityCentral(Event(button, state, x, y));
         }
     }
+}

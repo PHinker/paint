@@ -20,11 +20,16 @@ Modifications:
 using namespace std;
 
 void initOpenGL( void );
-void DrawLine( float x1, float y1, float x2, float y2, const array<float, 3> color );
-void DrawRectangle( float x1, float y1, float x2, float y2, const array<float,3> color );
-void DrawFilledRectangle( float x1, float y1, float x2, float y2, const array<float,3> color );
-void DrawEllipse( float xRadius, float yRadius, int x, int y, const array<float, 3> color );
-void DrawFilledEllipse( float xRadius, float yRadius, int x, int y, const array<float, 3> color );
-void DrawTextString( char *string, int x, int y, const array<float, 3> color );
+void DrawLine( float x1, float y1, float x2, float y2,
+               const array<float, 3> color );
+void DrawRectangle( float x1, float y1, float x2, float y2,
+                    const array<float, 3> color );
+void DrawFilledRectangle( float x1, float y1, float x2, float y2,
+                          const array<float, 3> color );
+void DrawEllipse( float xRadius, float yRadius, int x, int y,
+                  const array<float, 3> color );
+void DrawFilledEllipse( float xRadius, float yRadius, int x, int y,
+                        const array<float, 3> color );
+void DrawTextString( char* string, int x, int y, const array<float, 3> color );
 
 #endif

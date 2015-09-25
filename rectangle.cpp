@@ -23,47 +23,55 @@ using namespace std;
 // Rectangle class implementation
 
 // constructor
-Rectangle::Rectangle( float x, float y, SelectedColor bc, SelectedColor fc, float w, float h ) :
-    Shape( x, y, bc, fc ), width( w ), height( h )
+Rectangle::Rectangle( float x1, float y1, SelectedColor bc, SelectedColor fc,
+                      float x2, float y2 ) :
+    Shape( x1, y1, bc, fc ), x2( x2 ), y2( y2 )
 {
-    cout << "Rectangle constructor: (" <<
-         x << "," << y << ") = " << bc << ", width " << w << " x height " << h << endl;
 }
 
 // destructor
 Rectangle::~Rectangle( )
 {
-    cout << "Rectangle destructor: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // mutator method for Rectangle class
-void Rectangle::changeDimensions( float w, float h )
-{
-    cout << "Change Rectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
-    width = w;
-    height = h;
-}
+
 
 // must override pure virtual Shape::draw() method to instantiate class
 void Rectangle::draw( ) const
 {
-cout << "Draw Rectangle: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
-     DrawRectangle(locX, locY, locX+width, locY+height, ColorMap[borderColor]);
+    DrawRectangle(locX, locY, x2, y2, ColorMap[borderColor]);
 }
+
+void Rectangle::move(int centerX, int centerY)
+{
+    int width, height;
+    width = abs(locX - x2);
+    height = abs(locY - y2);
+    locX = centerX - width / 2;
+    locY = centerY - height / 2;
+    x2 = centerX + width / 2;
+    y2 = centerY + height / 2;
+}
+
+int Rectangle::getDistanceFromCenter(int clickX, int clickY)
+{
+    int centerX, centerY, distance;
+    centerX = (locX + x2) / 2;
+    centerY = (locY + y2) / 2;
+    distance = pow(clickX - centerX, 2) + pow(clickY - centerY, 2);
+    return distance;
+}
+
+
 
 // must override pure virtual Shape::erase() method to instantiate class
 void Rectangle::erase( ) const
 {
-    cout << "Erase Rectangle: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // must override pure virtual Shape::print() method to instantiate class
 void Rectangle::print( ostream& out ) const
 {
-    out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-        << " with sides " << width << " and " << height << endl;
 }
 

@@ -17,7 +17,8 @@ Line::Line( int x, int y, const SelectedColor bc, int endx, int endy) :
 Line::~Line( )
 {
     cout << "Line destructor: (" <<
-         locX << "," << locY << ") = " << borderColor << ", " << fillColor << ", endX " << endX << " endY " << endY<< endl;
+         locX << "," << locY << ") = " << borderColor << ", " << fillColor << ", endX "
+         << endX << " endY " << endY << endl;
 }
 
 bool Line::containsPoint(int x, int y)
@@ -33,22 +34,42 @@ void Line::draw( ) const
     //     locX << "," << locY << ") = " << borderColor << ", endX " << endX << " endY " << endY << endl;
 }
 
+void Line::move(int centerX, int centerY)
+{
+    int width = abs(locX - endX);
+    int height = abs(locY - endY);
+    locX = centerX - width / 2;
+    locY = centerY + height / 2;
+    endX = centerX + width / 2;
+    endY = centerY - height / 2;
+}
+
+int Line::getDistanceFromCenter(int clickX, int clickY)
+{
+    int centerX, centerY, distance;
+    centerX = abs(locX + endX) / 2;
+    centerY = abs(locY + endY) / 2;
+    distance = pow(clickX - centerX, 2) + pow(clickY - centerY, 2);
+    return distance;
+}
+
 // must override pure virtual Shape::erase() method to instantiate class
 void Line::erase( ) const
 {
     DrawLine(locX, locY, endX, endY, ColorMap[BLACK]);
     cout << "Erase Line: (" <<
-         locX << "," << locY << ") = " << borderColor << ", endX " << endX << " endY " << endY << endl;
+         locX << "," << locY << ") = " << borderColor << ", endX " << endX << " endY " <<
+         endY << endl;
 }
 
 int Line::getCenterX()
 {
-   return locX + (endX - locX) / 2;
+    return locX + (endX - locX) / 2;
 }
 
 int Line::getCenterY()
 {
-   return locY + (endY - locY) / 2;
+    return locY + (endY - locY) / 2;
 }
 // must override pure virtual Shape::print() method to instantiate class
 void Line::print( ostream& out ) const

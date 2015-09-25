@@ -23,48 +23,53 @@ using namespace std;
 // FilledRectangle class implementation
 
 // constructor
-FilledRectangle::FilledRectangle( float x, float y, SelectedColor bc, SelectedColor fc, float w, float h ) :
-    Shape( x, y, bc, fc ), width( w ), height( h )
+FilledRectangle::FilledRectangle( float x1, float y1, SelectedColor bc,
+                                  SelectedColor fc, float x2, float y2 ) :
+    Shape( x1, y1, bc, fc ), x2( x2 ), y2( y2 )
 {
-    cout << "FilledRectangle constructor: (" <<
-         x << "," << y << ") = " << bc << ", width " << w << " x height " << h << endl;
 }
 
 // destructor
 FilledRectangle::~FilledRectangle( )
 {
-    cout << "FilledRectangle destructor: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // mutator method for FilledRectangle class
-void FilledRectangle::changeDimensions( float w, float h )
-{
-    cout << "Change FilledRectangle dimensions from " << width << " x " << height << " to " << w << " x " << h << endl;
-    width = w;
-    height = h;
-}
 
 // must override pure virtual Shape::draw() method to instantiate class
 void FilledRectangle::draw( ) const
 {
-cout << "Draw FilledRectangle: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
-     DrawFilledRectangle(locX, locY, locX+width, locY+height, ColorMap[fillColor]);
-     DrawRectangle(locX, locY, locX+width, locY+height, ColorMap[borderColor]);
+    DrawFilledRectangle(locX, locY, x2, y2, ColorMap[fillColor]);
+    DrawRectangle(locX, locY, x2, y2, ColorMap[borderColor]);
+}
+
+void FilledRectangle::move(int centerX, int centerY)
+{
+    int width, height;
+    width = abs(locX - x2);
+    height = abs(locY - y2);
+    locX = centerX - width / 2;
+    locY = centerY - height / 2;
+    x2 = centerX + width / 2;
+    y2 = centerY + height / 2;
+}
+
+int FilledRectangle::getDistanceFromCenter(int clickX, int clickY)
+{
+    int centerX, centerY, distance;
+    centerX = (locX + x2) / 2;
+    centerY = (locY + y2) / 2;
+    distance = pow(clickX - centerX, 2) + pow(clickY - centerY, 2);
+    return distance;
 }
 
 // must override pure virtual Shape::erase() method to instantiate class
 void FilledRectangle::erase( ) const
 {
-    cout << "Erase FilledRectangle: (" <<
-         locX << "," << locY << ") = " << borderColor << ", width " << width << " x height " << height << endl;
 }
 
 // must override pure virtual Shape::print() method to instantiate class
 void FilledRectangle::print( ostream& out ) const
 {
-    out << ( width == height ? "square" : "rectangle" ) << " at position (" << locX << "," << locY << ")"
-        << " with sides " << width << " and " << height << endl;
 }
 

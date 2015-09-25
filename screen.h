@@ -16,19 +16,19 @@
 
 class Screen
 {
-   private:
-      vector<Shape*> shapes;
-      SelectedColor borderColor;
-      SelectedColor fillColor;
-      SelectedShape selectedShape;
+private:
+    vector<Shape*> shapes;
+    SelectedColor borderColor;
+    SelectedColor fillColor;
+    SelectedShape selectedShape;
 
-   public:
-      Screen();
-      void drawShapes();
-      void click(int x, int y, int button);
-      void clickAndDrag(int x, int y, int lastX, int lastY);
-      void keyboardAction(unsigned char key, int x, int y);
-      void initPalette();
+public:
+    Screen();
+    void drawShapes();
+    void click(int x, int y, int button);
+    void clickAndDrag(int x, int y, int lastX, int lastY, int button);
+    void keyboardAction(unsigned char key, int x, int y);
+    void initPalette();
 };
 
 #endif // SCREEN_H_INCLUDED
