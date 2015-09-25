@@ -24,8 +24,8 @@ using namespace std;
 // Note that this is an abstract class since it contains pure virtual functions.
 
 // constructor
-Shape::Shape( float x, float y, SelectedColor bc, SelectedColor fc, bool f ) :
-   locX( x ), locY( y ), borderColor( bc ), fillColor (fc), filled(f)
+Shape::Shape( float x, float y, SelectedColor bc, SelectedColor fc) :
+   locX( x ), locY( y ), borderColor( bc ), fillColor (fc)
 {
     cout << "Shape constructor: (" << locX << "," << locY << ") = " << borderColor << endl;
 }

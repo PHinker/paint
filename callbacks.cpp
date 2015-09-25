@@ -95,9 +95,7 @@ void mouseclick( int button, int state, int x, int y )
 
     y = ScreenHeight - y;
 
-    switch ( button )
-    {
-    case GLUT_LEFT_BUTTON:
+
         if(state == GLUT_DOWN){
             lastX = x;
             LastY = y;
@@ -105,11 +103,8 @@ void mouseclick( int button, int state, int x, int y )
         } else if(state == GLUT_UP){
             if(abs(lastX - x) > 25 || abs(LastY - y) > 25){
                 utilityCentral(Event(button, x, y, lastX, LastY));
-                cerr << "Left click and drag" << endl;
             } else {
                 utilityCentral(Event(button, state, x, y));
-                cerr << "Left click in place" << endl;
             }
         }
     }
-}

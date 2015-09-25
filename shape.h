@@ -36,11 +36,10 @@ class Shape
     protected:                    // note use of protected instead of private
         float locX, locY;
         SelectedColor borderColor, fillColor;
-        bool filled;
 
     public:                       // public methods
         // constructor
-        Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, bool f = false);
+        Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK);
 
         // destructor
         virtual ~Shape( );

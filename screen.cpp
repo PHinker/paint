@@ -21,8 +21,6 @@ map<int, SelectedShape> shapeMap =
    {20, LINE}, {21, TEXT}
 };
 
-extern map<SelectedColor, array<float, 3>> ColorMap;
-
 Screen::Screen()
 {
    ColorMap[BLACK] = array<float, 3>{0.0, 0.0, 0.0};
@@ -50,59 +48,78 @@ Screen::Screen()
 #define PosYToScr(y) (y / 2) * 50
 
 //gets called when user clicks in one spot on screen
-void Screen::click(int x, int y ) {
+void Screen::click(int x, int y, int button) {
 
     //if the click was within the palette
+
         int locationIndex = ScrToPos(x, y);
-        if (locationIndex >= 0 && locationIndex < 16)
-           selectedColor = colorIndexMap[locationIndex];
 
-        //If click is a shape
-        else if(locationIndex > 15 && locationIndex < 22)
-           selectedShape = shapeMap[locationIndex];
+        if(button == GLUT_LEFT_BUTTON){
+            if (locationIndex >= 0 && locationIndex < 16)
+               borderColor = colorIndexMap[locationIndex];
 
-        else
-        {
+            //If click is a shape
+            else if(locationIndex > 15 && locationIndex < 22)
+               selectedShape = shapeMap[locationIndex];
 
-        }
-        //use switch to assign colors
         cerr << "x: " << x << "  y: " << y << " locationIndex: " << locationIndex << endl;
-        cerr << "selected color = " << selectedColor << " selected shape = " << selectedShape << endl;
+        cerr << "selected color = " << borderColor << " selected shape = " << selectedShape << endl;
+        }
+
+        else if(button == GLUT_RIGHT_BUTTON){
+            if (locationIndex >= 0 && locationIndex < 16)
+               fillColor = colorIndexMap[locationIndex];
+            else if(locationIndex >= 16 && locationIndex < 22)
+               selectedShape = shapeMap[locationIndex];
+
+        cerr << "x: " << x << "  y: " << y << " locationIndex: " << locationIndex << endl;
+        cerr << "fill color = " << fillColor << " selected shape = " << selectedShape << endl;
+        }
 }
 
 void Screen::clickAndDrag(int x, int y, int lastX, int lastY){
 
-    //need to create derived shape classes
-    //add shapes to vector here
-
-    //not in palette
     int startX = min(x, lastX), startY = min(y, lastY);
 
     if(ScrToPos(x, y) > 22 && selectedShape != NONE) {
+        //TODO: replace cout statements with
        switch (selectedShape) {
           case LINE:
-          case RECTANGLE:
+            {
+               shapes.push_back(new Line(x, y, borderColor, lastX, lastY)));
+            break;
+            }
           case ELLIPSE:
+            {
+               shapes.push_back(new Ellipse(startX, startY, borderColor, fillColor, abs(x-lastX), abs(y-lastY))); 
+            break;
+            }
+          case FLDELLIPSE:
+            {
+                shapes.push_back(new FilledEllipse(startX, startY, borderColor, fillColor, abs(x-lastX), abs(y-lastY)));
+             break;
+             }
+          case RECTANGLE:
+            {
+               shapes.push_back(new Rectangle(startX, startY, borderColor, fillColor, abs(x-lastX), abs(y-lastY)));
+            break;
+            }
+          case FLDRECTANGLE:
+            {
+               shapes.push_back(new FilledRectangle(startX, startY, borderColor, fillColor, abs(x-lastX), abs(y-lastY)));
+            break;
+            }
+          default:
           {
-    // ToDo : add the selected shape to the shape vector
-           Rectangle *rect = new Rectangle(startX, startY, WHITE, BLACK, abs(x-lastX), abs(y-lastY));
-           rect->draw();
+            cout <<"Hit default in clickAndDrag" << endl;
+            break;
           }
        }
-    }/*
-        if(selectedShape == LINE)
-            DrawLine(x, y, lastX, lastY, ColorMap[selectedColor]);
-        if(selectedShape == RECTANGLE)
-            DrawRectangle(x, y, lastX, lastY, ColorMap[selectedColor]);
-        if(selectedShape == FLDRECTANGLE)
-            DrawFilledRectangle(x, y, lastX, lastY, ColorMap[selectedColor]);
-        if(selectedShape == ELLIPSE)
-            DrawEllipse(abs(lastX - x)/2, abs(lastY - y)/2, lastX, lastY, ColorMap[selectedColor]);
-        if(selectedShape == FLDELLIPSE)
-            DrawFilledEllipse(abs(lastX - x), abs(lastY - y), lastX, lastY, ColorMap[selectedColor]);
-*/
-
+    }
+    glutPostRedisplay();
 }
+
+
 
 void Screen::initPalette()
 {
@@ -110,7 +127,22 @@ void Screen::initPalette()
 
     for(int i = 0 ; i < 16 ; i++)
         DrawFilledRectangle(PosXToScr(i), PosYToScr(i), PosXToScr(i) + 50, PosYToScr(i) + 50, ColorMap[colorIndexMap[i]]);
+
+        DrawRectangle(0, 450, 50, 400, array<float, 3> { 1.0, 1.0, 1.0});
+        DrawFilledRectangle(51, 450, 100, 400, array<float, 3> { 1.0, 1.0, 1.0});
+        DrawEllipse(25, 25, 25, 475, array<float, 3> { 1.0, 1.0, 1.0});
+        DrawFilledEllipse(25, 25, 75, 475, array<float, 3> { 1.0, 1.0, 1.0});
+        DrawLine(0, 550, 50, 500, array<float, 3> { 1.0, 1.0, 1.0});
 }
+
+void Screen::drawShapes(){
+
+    cout << "scren::drawShapes() called!" << endl;
+
+    for(std::vector<Shape*>::iterator it = shapes.begin(); it!=shapes.end(); it++)
+        (*it)->draw();
+}
+
 
 void Screen::keyboardAction(unsigned char key, int x, int y) {
 

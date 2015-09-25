@@ -14,15 +14,18 @@ void utilityCentral(Event event)
    switch (event.event)
    {
       case DISPLAY:
+        {
          cout << "Displayed utility central\n";
          screen.initPalette();
+         screen.drawShapes();
          break;
+         }
       case KEYBOARD:
          cout << "Keyboard utility central (" << event.key << ", " << event.x << ", " << event.y << ")\n";
          break;
       case MOUSECLICK:
          cout << "Mouse utility central (" << event.key << ", " << event.button << ", " << event.state << ", " << event.x << ", " << event.y << ")\n";
-         screen.click(event.x, event.y);
+         screen.click(event.x, event.y, event.button);
          break;
       case MOUSEDRAG:
          cout << "Mouse utility central (" << event.key << ", " << event.button << ", " << event.state << ", " << event.x << ", " << event.y << ")\n";

@@ -7,7 +7,7 @@ using namespace std;
 
 // constructor
 Line::Line( int x, int y, const SelectedColor bc, int endx, int endy) :
-    Shape( x, y, bc, bc, false ), endX( endx ), endY( endy )
+    Shape( x, y, bc, bc), endX( endx ), endY( endy )
 {
     cout << "Line constructor: (" <<
          x << "," << y << ") = " << bc << ", endX " << endx << " endY " << endY << endl;

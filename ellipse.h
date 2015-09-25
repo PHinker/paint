@@ -9,7 +9,7 @@ class Ellipse : public Shape
         int radiusX, radiusY;
 
     public:
-        Ellipse( int x = 0.0, int y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, int rX = 1.0, int rY = 1.0, bool f = false);
+        Ellipse( int x = 0.0, int y = 0.0, SelectedColor bc = WHITE, SelectedColor fc = BLACK, int rX = 1.0, int rY = 1.0);
         ~Ellipse( );
         void changeRadius( int rx, int ry );
         bool containsPoint(int x, int y);

@@ -8,7 +8,7 @@ using namespace std;
 // Ellipse class implementation
 
 // constructor
-Ellipse::Ellipse( int x, int y, SelectedColor bc, SelectedColor fc, int rX, int rY, bool f ) : Shape( x, y, bc, fc, f ), radiusX( rX ), radiusY(rY)
+Ellipse::Ellipse( int x, int y, SelectedColor bc, SelectedColor fc, int rX, int rY) : Shape( x, y, bc, fc), radiusX( rX ), radiusY(rY)
 {}
 
 // destructor
