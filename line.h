@@ -1,22 +1,27 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
+
 #ifndef LINE_H_INCLUDED
 #define LINE_H_INCLUDED
 
 #include "shape.h"
 
 /**
- * \class Line
+ * @class Line
  *
- * \brief The class to draw, select, and move a line for the
+ * @brief The class to draw, select, and move a line for the
  *   csc300 - Program 1 programming assignment.
  *
- * \authors : Jake and Paul
+ * @author Jake Davidson
+ * @author Paul Hinker
  **/
 
 class Line : public Shape
 {
 protected:
-    int endX;      /**< X-endpoint for the line
-    int endY;      /**< Y-endpoint for the line
+    int endX;      /**< X-endpoint for the line */
+    int endY;      /**< Y-endpoint for the line */
 
 public:
     /// Constructor
@@ -32,7 +37,7 @@ public:
     }
 
     /// Returns the y-center of the line
-    int Line::getCenterY()
+    int getCenterY()
     {   
         return locY + (endY - locY) / 2;
     }

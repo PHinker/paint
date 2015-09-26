@@ -19,3 +19,16 @@ Modifications:
 using namespace std;
 
 #include "shape.h"
+
+// Shape class implementation
+// Note that this is an abstract class since it contains pure virtual functions.
+
+// constructor
+Shape::Shape( float x, float y, SelectedColor bc, SelectedColor fc) :
+    locX( x ), locY( y ), borderColor( bc ), fillColor (fc)
+{ }
+
+// destructor
+Shape::~Shape( )
+{ }
+

@@ -1,9 +1,9 @@
 /**
- * \file shape.h
+ * @file shape.h
  *
- * \authors : Jake and Paul
+ * @authors Jake Davidson, Paul Hinker
  *
- * \brief : Based on reference code provided by Dr. Weiss for the CSC 300
+ * @brief Based on reference code provided by Dr. Weiss for the CSC 300
  *    Data Structures class.
  */
 
@@ -19,17 +19,16 @@
 #include "globals.h"
 #include "graphics.h"
 
-
 using namespace std;
 
 /**
- * \class Shape
+ * @class Shape
  *
- * \brief This is an abstract base-class from which all the shapes in the
+ * @brief This is an abstract base-class from which all the shapes in the
  * application are derived.  It contains pure virtual functions and so
  * cannot be instantiated.
  *
- * \authors : Jake and Paul
+ * @authors Jake Davidson, Paul Hinker
  */
 class Shape
 {
@@ -40,6 +39,13 @@ protected:                     // note use of protected instead of private
     SelectedColor fillColor;   /**< Color Enum describing fill color */
 
 public:
+    /// constructor
+    Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE,
+           SelectedColor fc = BLACK);
+
+    /// destructor
+    virtual ~Shape( );
+
     /// Pure virtual member function implemented by derived classes
     /// to aid in selection of the drawn shapes.
     virtual int getDistanceFromCenter(int clickX, int clickY) = 0;

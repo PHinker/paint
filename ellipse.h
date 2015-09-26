@@ -1,3 +1,7 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
+
 #ifndef ELLIPSE_H_INCLUDED
 #define ELLIPSE_H_INCLUDED
 
@@ -8,7 +12,8 @@
  * \brief The class to draw, select, and move a filled rectangle for the
  *     csc300 - Program 1 programming assignment.
  * 
- * \authors : Jake and Paul
+ * \author Jake Davidson
+ * \author Paul Hinker
  **/
 
 class Ellipse : public Shape
