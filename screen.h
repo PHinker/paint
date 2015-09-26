@@ -14,9 +14,25 @@
 #include "filledellipse.h"
 #include "filledrectangle.h"
 
+/**
+ * \class Screen
+ *
+ * \brief Screen is a container for all the good stuff.
+ *
+ * \author Me
+ *
+ * \version $Revision: 1.5 $
+ *
+ * \date $Date: 2005/04/14 14:16:20 $
+ *
+ * Contact : me@tech
+ *
+ */
+
 class Screen
 {
 private:
+
     vector<Shape*> shapes;
     SelectedColor borderColor;
     SelectedColor fillColor;
@@ -24,10 +40,15 @@ private:
 
 public:
     Screen();
+    /// This is the function that draws all the shapes in the vector
     void drawShapes();
+    /// This handles mouse clicks
     void click(int x, int y, int button);
+    /// This handles mouse drag events
     void clickAndDrag(int x, int y, int lastX, int lastY, int button);
+    /// This handles keyboard events
     void keyboardAction(unsigned char key, int x, int y);
+    /// This draws the static palette
     void initPalette();
 };
 

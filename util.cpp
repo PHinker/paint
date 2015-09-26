@@ -13,12 +13,12 @@ void utilityCentral(Event event)
     switch (event.event)
     {
     case DISPLAY:
-        {
-            cout << "Displayed utility central\n";
-            screen.initPalette();
-            screen.drawShapes();
-            break;
-        }
+    {
+        cout << "Displayed utility central\n";
+        screen.initPalette();
+        screen.drawShapes();
+        break;
+    }
     case KEYBOARD:
         cout << "Keyboard utility central (" << event.key << ", " << event.x << ", " <<
              event.y << ")\n";

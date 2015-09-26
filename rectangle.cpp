@@ -63,15 +63,7 @@ int Rectangle::getDistanceFromCenter(int clickX, int clickY)
     return distance;
 }
 
-
-
 // must override pure virtual Shape::erase() method to instantiate class
 void Rectangle::erase( ) const
 {
 }
-
-// must override pure virtual Shape::print() method to instantiate class
-void Rectangle::print( ostream& out ) const
-{
-}
-

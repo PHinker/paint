@@ -6,6 +6,12 @@
 
 using namespace std;
 
+/** @file screen.cpp
+ *
+ * @author : Paul
+ *
+ * @date : Today
+ */
 // the GLUT header automatically includes gl.h and glu.h
 
 map<int, SelectedColor> colorIndexMap =
@@ -48,7 +54,8 @@ Screen::Screen()
 #define PosXToScr(x) (x % 2) * 50
 #define PosYToScr(y) (y / 2) * 50
 
-//gets called when user clicks in one spot on screen
+/** @fn Screen::click gets called when user clicks in one spot on screen
+ **/
 void Screen::click(int x, int y, int button)
 {
     //if the click was within the palette
@@ -83,45 +90,45 @@ void Screen::clickAndDrag(int x, int y, int lastX, int lastY, int button)
 {
     int distanceFromCenter = 0, distanceIndex = 0;
     Shape* temp;
-    if(ScrToPos(x, y) > 22 && selectedShape != NONE 
-                           && button == GLUT_LEFT_BUTTON)
+    if(ScrToPos(x, y) > 22 && selectedShape != NONE
+            && button == GLUT_LEFT_BUTTON)
     {
         //TODO: replace cout statements with
         switch (selectedShape)
         {
         case LINE:
-            {
-                shapes.push_back(new Line(x, y, borderColor, lastX, lastY));
-                break;
-            }
+        {
+            shapes.push_back(new Line(x, y, borderColor, lastX, lastY));
+            break;
+        }
         case ELLIPSE:
-            {
-                shapes.push_back(new Ellipse((lastX + x) / 2, (lastY + y) / 2 , borderColor,
-                                             fillColor, abs(x - lastX) / 2, abs(y - lastY) / 2));
-                break;
-            }
+        {
+            shapes.push_back(new Ellipse((lastX + x) / 2, (lastY + y) / 2 , borderColor,
+                                         fillColor, abs(x - lastX) / 2, abs(y - lastY) / 2));
+            break;
+        }
         case FLDELLIPSE:
-            {
-                shapes.push_back(new FilledEllipse((lastX + x) / 2, (lastY + y) / 2 ,
-                                                   borderColor, fillColor, abs(x - lastX) / 2, abs(y - lastY) / 2));
-                break;
-            }
+        {
+            shapes.push_back(new FilledEllipse((lastX + x) / 2, (lastY + y) / 2 ,
+                                               borderColor, fillColor, abs(x - lastX) / 2, abs(y - lastY) / 2));
+            break;
+        }
         case RECTANGLE:
-            {
-                shapes.push_back(new Rectangle(x, y, borderColor, fillColor, lastX, lastY));
-                break;
-            }
+        {
+            shapes.push_back(new Rectangle(x, y, borderColor, fillColor, lastX, lastY));
+            break;
+        }
         case FLDRECTANGLE:
-            {
-                shapes.push_back(new FilledRectangle(x, y, borderColor, fillColor, lastX,
-                                                     lastY));
-                break;
-            }
+        {
+            shapes.push_back(new FilledRectangle(x, y, borderColor, fillColor, lastX,
+                                                 lastY));
+            break;
+        }
         default:
-            {
-                cout << "Hit default in clickAndDrag" << endl;
-                break;
-            }
+        {
+            cout << "Hit default in clickAndDrag" << endl;
+            break;
+        }
         }
     }
     //right click and drag
@@ -186,24 +193,24 @@ void Screen::keyboardAction(unsigned char key, int x, int y)
         exit( 0 );
         break;
     case 'd':
+    {
+        if(x > 100 && !shapes.empty())
         {
-            if(x > 100 && !shapes.empty())
+            for(unsigned int i = 0; i < shapes.size(); i++)
             {
-                for(unsigned int i = 0; i < shapes.size(); i++)
+                if( i == 0 )
+                    distanceFromCenter = shapes.at(i) -> getDistanceFromCenter(x, y);
+                else if(shapes.at(i) -> getDistanceFromCenter(x, y) < distanceFromCenter)
                 {
-                    if( i == 0 )
-                        distanceFromCenter = shapes.at(i) -> getDistanceFromCenter(x, y);
-                    else if(shapes.at(i) -> getDistanceFromCenter(x, y) < distanceFromCenter)
-                    {
-                        distanceIndex = i;
-                        distanceFromCenter = shapes.at(i) -> getDistanceFromCenter(x, y);
-                    }
+                    distanceIndex = i;
+                    distanceFromCenter = shapes.at(i) -> getDistanceFromCenter(x, y);
                 }
-                if(distanceFromCenter < 30000)
-                    shapes.erase(shapes.begin() + distanceIndex);
             }
-            break;
+            if(distanceFromCenter < 30000)
+                shapes.erase(shapes.begin() + distanceIndex);
         }
+        break;
+    }
     // anything else redraws window
     default:
         glutPostRedisplay();

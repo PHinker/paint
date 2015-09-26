@@ -1,18 +1,11 @@
-/*
-                    ***** shape.h *****
-
-OOP example illustrating inheritance and late binding via virtual functions in C++.
-Inheritance is used to derive various shape classes (Point, Line, Circle, Rectangle, Square)
-from a base Shape class.
-
-This file contains the Shape class interface.
-
-Author: John M. Weiss, Ph.D.
-Class:  CSC300 Data Structures
-Date:   Fall 2015
-
-Modifications:
-*/
+/**
+ * \file shape.h
+ *
+ * \authors : Jake and Paul
+ *
+ * \brief : Based on reference code provided by Dr. Weiss for the CSC 300
+ *    Data Structures class.
+ */
 
 //-----------------------------------------------------------------------
 
@@ -29,36 +22,42 @@ Modifications:
 
 using namespace std;
 
-//-----------------------------------------------------------------------
-
-// Shape class interface
-// Note that this is an abstract class since it contains pure virtual functions.
+/**
+ * \class Shape
+ *
+ * \brief This is an abstract base-class from which all the shapes in the
+ * application are derived.  It contains pure virtual functions and so
+ * cannot be instantiated.
+ *
+ * \authors : Jake and Paul
+ */
 class Shape
 {
 protected:                    // note use of protected instead of private
     float locX, locY;
     SelectedColor borderColor, fillColor;
 
-public:                       // public methods
-    // constructor
+public:
+    /// Constructor
     Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE,
            SelectedColor fc = BLACK);
 
-    // destructor
+    /// Destructor
     virtual ~Shape( );
 
-    // move object
-    void moveTo( float x, float y );
-
-    // change color of object
-    void changeColor( SelectedColor c );
-
-    // print, draw and erase methods:
-    // pure virtual methods that must be overridden in non-abstract derived classes
+    /// Pure virtual member function implemented by derived classes
+    /// to aid in selection of the drawn shapes.
     virtual int getDistanceFromCenter(int clickX, int clickY) = 0;
-    virtual void print( ostream& ) const = 0;
+
+    /// Pure virtual member function that draws the derived shapes.
     virtual void draw() const = 0;
+
+    /// Helper function used to move the shape once it has been selected
+    /// by the user with the right-mouse click and drag operation.
     virtual void move(int centerX, int centerY) = 0;
+
+    /// Function used to reposition the shape in the vector of shapes
+    /// that are currently being drawn.
     virtual void erase() const = 0;
 };
 

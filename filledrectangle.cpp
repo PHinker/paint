@@ -67,9 +67,3 @@ int FilledRectangle::getDistanceFromCenter(int clickX, int clickY)
 void FilledRectangle::erase( ) const
 {
 }
-
-// must override pure virtual Shape::print() method to instantiate class
-void FilledRectangle::print( ostream& out ) const
-{
-}
-

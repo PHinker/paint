@@ -37,20 +37,3 @@ Shape::~Shape( )
     cout << "Shape destructor: (" << locX << "," << locY << ") = " << borderColor <<
          endl;
 }
-
-// move object
-void Shape::moveTo( float x, float y )
-{
-    cout << "Move Shape from (" << locX << "," << locY << ") to (" << x << "," << y
-         << ")" << endl;
-    locX = x;
-    locY = y;
-}
-
-// change color of object
-void Shape::changeColor( SelectedColor c )
-{
-    cout << "Change Shape color from " << borderColor << " to " << c << endl;
-    borderColor = c;
-}
-

@@ -21,17 +21,10 @@ Line::~Line( )
          << endX << " endY " << endY << endl;
 }
 
-bool Line::containsPoint(int x, int y)
-{
-    return (locX <= x && endX >= x && locY <= y && endY >= y);
-}
-
 // must override pure virtual Shape::draw() method to instantiate class
 void Line::draw( ) const
 {
     DrawLine( locX, locY, endX, endY, ColorMap[borderColor] );
-    //cout << "Draw  Line: (" <<
-    //     locX << "," << locY << ") = " << borderColor << ", endX " << endX << " endY " << endY << endl;
 }
 
 void Line::move(int centerX, int centerY)
@@ -70,10 +63,4 @@ int Line::getCenterX()
 int Line::getCenterY()
 {
     return locY + (endY - locY) / 2;
-}
-// must override pure virtual Shape::print() method to instantiate class
-void Line::print( ostream& out ) const
-{
-    out << "Line at position (" << locX << "," << locY << ")"
-        << " with end at (" << endX << " and " << endY << ")" << endl;
 }
