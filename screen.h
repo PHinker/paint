@@ -19,16 +19,11 @@
  *
  * \brief Screen is a container for all the good stuff.
  *
- * \author Me
+ * \author Paul and Jake
  *
- * \version $Revision: 1.5 $
- *
- * \date $Date: 2005/04/14 14:16:20 $
- *
- * Contact : me@tech
+ * \date Sept. 24, 2015
  *
  */
-
 class Screen
 {
 private:

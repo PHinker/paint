@@ -15,7 +15,8 @@
 class Line : public Shape
 {
 protected:
-    int endX, endY;
+    int endX;      /**< X-endpoint for the line
+    int endY;      /**< Y-endpoint for the line
 
 public:
     /// Constructor
@@ -25,9 +26,17 @@ public:
     ~Line( );
 
     /// Returns the x-center of the line
-    int getCenterX();
+    int getCenterX()
+    {   
+        return locX + (endX - locX) / 2;
+    }
+
     /// Returns the y-center of the line
-    int getCenterY();
+    int Line::getCenterY()
+    {   
+        return locY + (endY - locY) / 2;
+    }
+
     /// The Line class's implementation of the base class (Shape) pure
     /// virtual function draw().  Used to render the line.
     void draw( ) const;

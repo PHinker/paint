@@ -14,6 +14,11 @@ using namespace std;
  */
 // the GLUT header automatically includes gl.h and glu.h
 
+/**
+ * An <int, SelectedColor> map used to convert palette location to
+ * a specific color in the color palete.
+ */
+
 map<int, SelectedColor> colorIndexMap =
 {
     {0, PURPLE}, {1, DKPURPLE}, {2, ORANGE}, {3, DKORANGE}, {4, YELLOW},
@@ -22,6 +27,10 @@ map<int, SelectedColor> colorIndexMap =
     {15, DKRED}, {16, BLACK}
 };
 
+/**
+ * A <int, SelectedShape> map used to convert palette coodinates into
+ * one of the shape selections.
+ */
 map<int, SelectedShape> shapeMap =
 {
     {16, RECTANGLE}, {17, FLDRECTANGLE}, {18, ELLIPSE}, {19, FLDELLIPSE},
@@ -50,11 +59,24 @@ Screen::Screen()
     ColorMap[WHITE] = array<float, 3> { 1.0, 1.0, 1.0};
 }
 
+/**
+ \def ScrToPos(x, y)
+     Converts a screen position into a palette position.
+*/
 #define ScrToPos(x,y) ((x < 101) ? y/50 * 2 + (x/50) : 23)
+
+/**
+ \def PosXToScr(x)
+     Converts a paletee coordinate into a screen x-coordinate
+*/
 #define PosXToScr(x) (x % 2) * 50
+/**
+ \def PosYToScr(x)
+     Converts a paletee coordinate into a screen x-coordinate
+*/
 #define PosYToScr(y) (y / 2) * 50
 
-/** @fn Screen::click gets called when user clicks in one spot on screen
+/** @brief the screen click handler
  **/
 void Screen::click(int x, int y, int button)
 {

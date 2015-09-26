@@ -33,18 +33,13 @@ using namespace std;
  */
 class Shape
 {
-protected:                    // note use of protected instead of private
-    float locX, locY;
-    SelectedColor borderColor, fillColor;
+protected:                     // note use of protected instead of private
+    float locX;                /**< The x-location of the shape */
+    float locY;                /**< The y-location of the shape */
+    SelectedColor borderColor; /**< Color Enum describing border color */
+    SelectedColor fillColor;   /**< Color Enum describing fill color */
 
 public:
-    /// Constructor
-    Shape( float x = 0.0, float y = 0.0, SelectedColor bc = WHITE,
-           SelectedColor fc = BLACK);
-
-    /// Destructor
-    virtual ~Shape( );
-
     /// Pure virtual member function implemented by derived classes
     /// to aid in selection of the drawn shapes.
     virtual int getDistanceFromCenter(int clickX, int clickY) = 0;
