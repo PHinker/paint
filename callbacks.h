@@ -1,3 +1,7 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
+
 #ifndef CALLBACKS_H_INCLUDED
 #define CALLBACKS_H_INCLUDED
 
@@ -11,7 +15,6 @@ Author: Jake and Paul
 Class:  CSC300 Data Structures
 Date:   Fall 2015
 
-Modifications:
 */
 
 // OpenGL callback function prototypes
@@ -19,12 +22,14 @@ Modifications:
 // guard against multiple inclusions
 #ifndef _Callbacks_H_
 #define _Callbacks_H_
-
+//called when new things need to be drawn to screen
 void display( void );
+//called when the window is resized
 void reshape( int w, int h );
+//called when user presses a key
 void keyboard( unsigned char key, int x, int y );
+//called when user clicks
 void mouseclick( int button, int state, int x, int y );
-void mousedrag( int x, int y );
 
 #endif
 

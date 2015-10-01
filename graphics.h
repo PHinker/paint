@@ -1,3 +1,6 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
 /*
                     ***** graphics.h *****
 
@@ -19,6 +22,8 @@ Modifications:
 #include <array>
 using namespace std;
 
+//function prototypes
+//routines to draw shapes to screen
 void initOpenGL( void );
 void DrawLine( float x1, float y1, float x2, float y2,
                const array<float, 3> color );

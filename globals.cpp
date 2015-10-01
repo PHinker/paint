@@ -1,3 +1,6 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
 /*
                     ***** globals.h *****
 
@@ -18,8 +21,11 @@ Modifications:
 // symbolic constants
 
 // global vars
+/** \brief width of window */
 int ScreenWidth  = 900;
+/** \brief height of window */
 int ScreenHeight = 900;
+/** \brief map connecting colors to enums */
 map<SelectedColor, array<float, 3>> ColorMap;
 
 #endif

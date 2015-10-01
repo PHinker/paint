@@ -1,7 +1,8 @@
-/**
- * @file rectangle.h
+/*************************************************************************//**
+ * @file
  *
- * @author : Jake and Paul
+ * @author Jake Davidson
+ * @author Paul Hinker
  *
  * @brief Based on reference code provided by Dr. Weiss for 
  *    CSC 300 - Data Structures
@@ -14,12 +15,13 @@
 #include "shape.h"
 
 /**
- * \class FilledRectangle
+ * @class FilledRectangle
  *
- * \brief The class to draw, select, and move a filled rectangle for the
+ * @brief The class to draw, select, and move a filled rectangle for the
  *    csc300 - Program 1 programming assignment.
  *
- * \authors : Jake and Paul
+ * @author Jake Davidson
+ * @author Paul Hinker
  */
 class FilledRectangle : public Shape
 {

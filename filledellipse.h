@@ -1,24 +1,20 @@
+/*************************************************************************//**
+* @file
+*****************************************************************************/
+
 #ifndef FILLEDELLIPSE_H_INCLUDED
 #define FILLEDELLIPSE_H_INCLUDED
-
-/**
- * @file filledellipse.h
- *
- * @author : Jake and Paul
- *
- * @brief Based on reference code provided by Dr. Weiss for
- *    CSC 300 - Data Structures
- */
 
 #include "shape.h"
 
 /**
- * \class FilledEllipse
+ * @class FilledEllipse
  *
- * \brief The class to draw, select, and move a filled ellipse for the
+ * @brief The class to draw, select, and move a filled ellipse for the
  *    csc300 - Program 1 programming assignment.
  *
- * \authors : Jake and Paul
+ * @author Jake Davidson
+ * @author Paul Hinker
  */
 
 class FilledEllipse : public Shape

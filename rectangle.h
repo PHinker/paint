@@ -1,11 +1,12 @@
-/**
- * \file rectangle.h
+/*************************************************************************//**
+ * @file
  *
- * @author : Jake and Paul
+ * @author Jake Davidson
+ * @author Paul Hinker
  *
- * \brief : Based on reference code provided by Dr. Weiss for the CSC 300 -
+ * @brief Based on reference code provided by Dr. Weiss for the CSC 300 -
  *    Data Structures class.
-*/
+ */
 
 // guard against multiple inclusions
 #ifndef _Rectangle_H_
@@ -14,12 +15,12 @@
 #include "shape.h"
 
 /**
- * \class Rectangle
+ * @class Rectangle
  *
- * \brief The class to draw, select, and move a rectangle for the csc300 -
+ * @brief The class to draw, select, and move a rectangle for the csc300 -
  *    Program 1 programming assignment.
  *
- * \authors : Jake and Paul
+ * @authors Jake Davidson, Paul Hinker
  */
 class Rectangle : public Shape
 {

@@ -14,6 +14,6 @@ all: main
 
 main: main.o $(OBJS) $(INCLUDES)
 	$(CC) -o main $(OBJS) $(LIBS)
-	
+
 clean :
 	rm -rf $(OBJS) main
